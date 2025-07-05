@@ -1,10 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
+import AppRoutes from './router';
+import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
 
 function App() {
   return (
-    <div className="App" style={{backgroundColor: '#313', color:'white'}}>
-      <h1>Hello, Ajinkya</h1>
+    <div className="App" style={{backgroundColor: '#CCCCCC', color:'white'}}>
+      <Header />
+      <div style={{padding: '0 16px 0 16px'}}>
+        <AppRoutes />
+      </div>
+      <Footer/>
     </div>
   );
 }
