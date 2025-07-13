@@ -17,21 +17,9 @@ import NotFoundPage from '../pages/NotFoundPage';
 
 const AppRoutes = () => {
   return (
-    <BrowserRouter>
-      {/* You can wrap your Routes in a layout component if you have a consistent layout 
-        For example:
-        <Routes>
-          <Route path="/" element={<MainLayout />}>
-            <Route index element={<HomePage />} />
-            <Route path="products" element={<ProductListingPage />} />
-            ...
-          </Route>
-        </Routes>
-        For simplicity, we'll keep it flat here, but consider a Layout for common UI elements.
-      */}
       <Routes>
         {/* Public Routes */}
-        <Route path="/" element={<HomePage />} />
+        <Route path="/buy-and-sell" element={<HomePage />} />
         <Route path="/products" element={<ProductListingPage />} />
         <Route path="/products/:id" element={<ProductDetailsPage />} /> {/* Dynamic segment for product ID */}
         <Route path="/cart" element={<CartPage />} />
@@ -46,7 +34,6 @@ const AppRoutes = () => {
         {/* Catch-all route for 404 Not Found */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-    </BrowserRouter>
   );
 };
 

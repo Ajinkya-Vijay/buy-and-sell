@@ -16,6 +16,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useNavigate } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -63,6 +64,7 @@ export default function PrimarySearchAppBar() {
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const navigate = useNavigate();
 
   const handleProfileMenuOpen = (event) => {
     console.log(event.currentTarget)
@@ -77,6 +79,11 @@ export default function PrimarySearchAppBar() {
     setAnchorEl(null);
     handleMobileMenuClose();
   };
+
+  const handleProfileNavigation = () =>{
+    navigate('/login')
+    handleMobileMenuClose()
+  }
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
@@ -100,7 +107,7 @@ export default function PrimarySearchAppBar() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleProfileNavigation}>My account</MenuItem>
       <MenuItem onClick={handleMenuClose}>Log out</MenuItem>
     </Menu>
   );
@@ -175,6 +182,7 @@ export default function PrimarySearchAppBar() {
             noWrap
             component="div"
             sx={{ display: { xs: 'none', sm: 'block', fontFamily: 'emoji', fontStyle: 'italic' } }}
+            onClick={()=>navigate('/')}
           >
             Buy'n'Sell
           </Typography>
