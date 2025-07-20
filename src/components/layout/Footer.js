@@ -11,20 +11,20 @@ const Footer = () => {
             <li>Contact Us</li>
             <li>About Us</li>
             <li>Careers</li>
-            <li>Flipkart Stories</li>
+            <li>buyandsell Stories</li>
             <li>Press</li>
             <li>Corporate Information</li>
           </ul>
         </div>
 
-        <div className="footer-col">
+        {/* <div className="footer-col">
           <h4>GROUP COMPANIES</h4>
           <ul>
             <li>Myntra</li>
             <li>Cleartrip</li>
             <li>Shopsy</li>
           </ul>
-        </div>
+        </div> */}
 
         <div className="footer-col">
           <h4>HELP</h4>
@@ -52,24 +52,24 @@ const Footer = () => {
         <div className="footer-col mail-section">
           <h4>Mail Us:</h4>
           <p>
-            Flipkart Internet Private Limited,<br />
+            buyandsell Internet Private Limited,<br />
             Buildings Alyssa, Begonia & Clove Embassy Tech Village,<br />
-            Outer Ring Road, Devarabeesanahalli Village,<br />
-            Bengaluru, 560103,<br />
-            Karnataka, India
+            Hinjewadi Village,<br />
+            Pune, 414003,<br />
+            Maharashtra, India
           </p>
         </div>
 
         <div className="footer-col mail-section">
           <h4>Registered Office Address:</h4>
           <p>
-            Flipkart Internet Private Limited,<br />
+            buyandsell Internet Private Limited,<br />
             Buildings Alyssa, Begonia & Clove Embassy Tech Village,<br />
-            Outer Ring Road, Devarabeesanahalli Village,<br />
-            Bengaluru, 560103,<br />
-            Karnataka, India<br />
+            Hinjewadi,<br />
+            Pune, 414003,<br />
+            Maharashtra, India<br />
             CIN : U51109KA2012PTC066107<br />
-            Telephone: <a href="tel:04445614700">044-45614700</a> / <a href="tel:04467415800">044-67415800</a>
+            Telephone: <a href="tel:08845614700">088-45614700</a> / <a href="tel:08867415800">088-67415800</a>
           </p>
         </div>
       </div>
@@ -82,7 +82,7 @@ const Footer = () => {
           <span>❓ Help Center</span>
         </div>
         <div className="footer-copy">
-          © 2007-{new Date().getFullYear()} Flipkart.com
+          © 2007-{new Date().getFullYear()} buyandsell.com
         </div>
         <div className="footer-payment-icons">
           {/* Replace these spans with actual icons/images if needed */}
