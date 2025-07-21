@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Box, Grid } from '@mui/material';
 import axios from 'axios';
 
 export default function ProductDetailsPage() {
@@ -18,22 +19,38 @@ export default function ProductDetailsPage() {
 
   useEffect(()=>{
     getProductDetails();
-  },[])
+  },[]);
+
   return<>
-    {product && (
-    <div style={{ padding: '2rem', fontFamily: 'Arial, sans-serif' }}>
-      <div style={{ display: 'flex', color: 'black', gap: '2rem' }}>
-        {/* Left: Product Image */}
-        <div style={{ flex: 0.7 }}>
+<Box sx={{ width: '100%', mt: 4 }}>
+  {product && (
+    <Grid
+      container
+      spacing={4}
+      justifyContent="center"
+      alignItems="flex-start"
+      sx={{ px: 2 }}
+    >
+      {/* Product Image (Left Side) */}
+      <Grid item xs={12} md={6}>
+        <Box sx={{ width: '72%' }}>
           <img
             src={product?.images[0]}
             alt={product?.title}
-            style={{ width: '600px', height: '600px', borderRadius: '10px' }}
+            style={{
+              width: '100%',
+              height: 'auto',
+              maxHeight: '500px',
+              objectFit: 'cover',
+              borderRadius: '10px',
+            }}
           />
-        </div>
+        </Box>
+      </Grid>
 
-        {/* Right: Product Info */}
-        <div style={{ flex: 1 }}>
+      {/* Product Info (Right Side) */}
+      <Grid item xs={12} md={6}>
+        <Box sx={{ color: 'black', fontFamily: 'Arial, sans-serif' }}>
           <h1>{product?.title}</h1>
           <p style={{ color: '#666' }}>by {product?.brand}</p>
           <p>{product?.description}</p>
@@ -46,23 +63,19 @@ export default function ProductDetailsPage() {
             <span style={{ color: 'green' }}>({product?.discountPercentage}% OFF)</span>
           </h2>
 
-          <p>
-            <strong>Availability:</strong> {product?.availabilityStatus}
-          </p>
-          <p>
-            <strong>Stock Left:</strong> {product?.stock}
-          </p>
+          <p><strong>Availability:</strong> {product?.availabilityStatus}</p>
+          <p><strong>Stock Left:</strong> {product?.stock}</p>
 
-          <div style={{ display: 'flex', marginLeft: '280px', gap: '1rem', marginTop: '1rem' }}>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mt: 2 }}>
             <button style={{ padding: '10px 20px', backgroundColor: '#FFA41C', border: 'none', color: 'white' }}>
               Add to Cart
             </button>
             <button style={{ padding: '10px 20px', backgroundColor: '#FB641B', border: 'none', color: 'white' }}>
               Buy Now
             </button>
-          </div>
+          </Box>
 
-          <div style={{ color: 'black', marginTop: '2rem' }}>
+          <Box sx={{ mt: 4 }}>
             <h3>Specifications</h3>
             <p><strong>SKU:</strong> {product?.sku}</p>
             <p><strong>Weight:</strong> {product?.weight}g</p>
@@ -73,38 +86,42 @@ export default function ProductDetailsPage() {
             <p><strong>Shipping:</strong> {product?.shippingInformation}</p>
             <p><strong>Return Policy:</strong> {product?.returnPolicy}</p>
             <p><strong>Minimum Order Quantity:</strong> {product?.minimumOrderQuantity}</p>
-          </div>
+          </Box>
 
-          <div style={{ marginTop: '1rem' }}>
+          <Box sx={{ mt: 3 }}>
             <h3>Meta Info</h3>
             <p><strong>Barcode:</strong> {product?.meta.barcode}</p>
             <img src={product?.meta.qrCode} alt="QR Code" width="100" />
-          </div>
-        </div>
-      </div>
+          </Box>
+        </Box>
+      </Grid>
 
       {/* Reviews */}
-      <div style={{ color: 'black', marginTop: '3rem', display:'inline-block', width : '500px'}}>
-        <h2>Customer Reviews</h2>
-        {product?.reviews.map((review, index) => (
-          <div
-            key={index}
-            style={{
-              borderTop: '1px solid #ccc',
-              padding: '1rem 0',
-              display: 'flex',
-              alignItems: 'flex-start',
-              gap: '1rem'
-            }}
-          >
-            <div style={{ minWidth: '200px', fontWeight: 'bold' }}>
-              {review.reviewerName} — ⭐ {review.rating}
-            </div>
-            <div style={{ flex: 1 }}>{review.comment}</div>
-          </div>
-        ))}
+      <Grid item xs={12} md={10}>
+        <Box sx={{ color: 'black', mt: 6 }}>
+          <h2>Customer Reviews</h2>
+          {product?.reviews.map((review, index) => (
+            <Box
+              key={index}
+              sx={{
+                borderTop: '1px solid #ccc',
+                py: 2,
+                display: 'flex',
+                alignItems: 'flex-start',
+                gap: 2,
+              }}
+            >
+              <Box sx={{ minWidth: '200px', fontWeight: 'bold' }}>
+                {review.reviewerName} — ⭐ {review.rating}
+              </Box>
+              <Box sx={{ flex: 1 }}>{review.comment}</Box>
+            </Box>
+          ))}
+        </Box>
+      </Grid>
+    </Grid>
+  )}
+</Box>
 
-      </div>
-    </div>)}
   </> 
 }

@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
 import axios from 'axios';
 import { Grid, Box, Typography, Chip } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
