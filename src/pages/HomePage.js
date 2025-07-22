@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Grid, Box, Typography, Chip } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
 import { useNavigate } from 'react-router-dom';
 
 export default function HomePage() {
-  const [furnitureList, setStoreFurnitureAndAccesoryList] = useState([]);
-
   const navigate = useNavigate();
 
+  const [furnitureList, setStoreFurnitureAndAccesoryList] = useState([]);
+  const [loading, setLoading] = useState(false)
+
   async function getfurnitureList() {
+    setLoading(true)
     let furnitureData;
     let kitchenData
     await axios.get('https://dummyjson.com/products/category/furniture')
@@ -22,6 +25,7 @@ export default function HomePage() {
       }
       ).catch((err) => console.error(err));
     setStoreFurnitureAndAccesoryList([...furnitureData, ...kitchenData])
+    setLoading(false)
   }
 
   React.useEffect(() => {
@@ -29,7 +33,10 @@ export default function HomePage() {
   }, [])
 
   return (
-    <Box sx={{ width: '100%', mt: 4 }}>
+    <Box sx={{minHeight: '20em', width: '100%', mt: 4 }}>
+      {loading ? <Box sx={{ display: 'flex', justifyContent:'center'}}>
+      <CircularProgress />
+    </Box> :
       <Grid container spacing={2}>
         {furnitureList.map((item) => (
           <Grid
@@ -86,7 +93,7 @@ export default function HomePage() {
                 </Box>
 
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                  <Typography sx={{color : 'black'}} fontWeight={600}>&#8377;{Math.ceil(item.price)*100}</Typography>
+                  <Typography sx={{color : 'black'}} fontWeight={600}>&#8377;{Math.ceil(item.price)*10}</Typography>
                   <Typography variant="body2" sx={{ textDecoration: 'line-through', color: '#878787' }}>
                     ₹{item.originalPrice || item.price + 1000}
                   </Typography>
@@ -104,7 +111,7 @@ export default function HomePage() {
             </Box>
           </Grid>
         ))}
-      </Grid>
+      </Grid>}
     </Box>
 
   )

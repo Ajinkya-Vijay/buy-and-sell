@@ -182,7 +182,7 @@ export default function PrimarySearchAppBar() {
             noWrap
             component="div"
             sx={{ display: { xs: 'none', sm: 'block', fontFamily: 'emoji', fontStyle: 'italic' } }}
-            onClick={()=>navigate('/')}
+            onClick={()=>navigate('/buy-and-sell')}
           >
             Buy'n'Sell
           </Typography>
