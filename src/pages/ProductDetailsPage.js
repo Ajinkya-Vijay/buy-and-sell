@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Box, Grid } from '@mui/material';
+import { useCartStore } from '../store/cartStore'
 import axios from 'axios';
 
 export default function ProductDetailsPage() {
+  const addProduct = useCartStore((state)=>state.addCart)
   const [product, setProduct] = useState();
-  let discountedPrice;
+  
   const params = useParams();
+  const navigate = useNavigate();
 
   async function getProductDetails(){
     let furnitureData;
@@ -56,9 +59,9 @@ export default function ProductDetailsPage() {
           <p>{product?.description}</p>
 
           <h2 style={{ marginTop: '1rem', color: '#B12704' }}>
-            ₹{discountedPrice}{' '}
+            ₹{Math.ceil(product.price)*10}{' '}
             <span style={{ textDecoration: 'line-through', color: '#888', fontSize: '1rem' }}>
-              ₹{product?.price}
+              ₹{product.originalPrice || product.price + 1000}
             </span>{' '}
             <span style={{ color: 'green' }}>({product?.discountPercentage}% OFF)</span>
           </h2>
@@ -67,7 +70,7 @@ export default function ProductDetailsPage() {
           <p><strong>Stock Left:</strong> {product?.stock}</p>
 
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mt: 2 }}>
-            <button style={{ padding: '10px 20px', backgroundColor: '#FFA41C', border: 'none', color: 'white' }}>
+            <button onClick={()=>{addProduct(product); navigate('/checkout')}} style={{ padding: '10px 20px', backgroundColor: '#FFA41C', border: 'none', color: 'white' }}>
               Add to Cart
             </button>
             <button style={{ padding: '10px 20px', backgroundColor: '#FB641B', border: 'none', color: 'white' }}>
