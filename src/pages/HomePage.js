@@ -1,42 +1,30 @@
-import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { Grid, Box, Typography, Chip } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
-import { useNavigate } from 'react-router-dom';
 
-export default function HomePage() {
+export default function HomePage() {  
   const navigate = useNavigate();
+  
+  async function getfurnitureList() { 
+    let furnitureData = await axios.get('https://dummyjson.com/products/category/furniture')
+    let kitchenData = await axios.get('https://dummyjson.com/products/category/kitchen-accessories?limit=80')
+    return [...furnitureData.data.products, ...kitchenData.data.products]
+  };
 
-  const [furnitureList, setStoreFurnitureAndAccesoryList] = useState([]);
-  const [loading, setLoading] = useState(false)
+  const { data : furnitureList = [], isLoading, error } = useQuery({
+    queryKey: ['listItems'], // unique key for the query
+    queryFn: getfurnitureList,
+  });
 
-  async function getfurnitureList() {
-    setLoading(true)
-    let furnitureData;
-    let kitchenData
-    await axios.get('https://dummyjson.com/products/category/furniture')
-      .then((res) => {
-        furnitureData = res.data.products;
-      }).catch((err) => console.error(err));
-
-    await axios.get('https://dummyjson.com/products/category/kitchen-accessories?limit=10')
-      .then((res) => {
-        kitchenData = res.data.products;
-      }
-      ).catch((err) => console.error(err));
-    setStoreFurnitureAndAccesoryList([...furnitureData, ...kitchenData])
-    setLoading(false)
-  }
-
-  React.useEffect(() => {
-    getfurnitureList()
-  }, [])
+  if (isLoading) return <Box sx={{ display: 'flex', justifyContent:'center'}}>
+      <CircularProgress />
+    </Box>;
+  if (error) return <div>Error: {error.message}</div>;
 
   return (
     <Box sx={{minHeight: '20em', width: '100%', mt: 4 }}>
-      {loading ? <Box sx={{ display: 'flex', justifyContent:'center'}}>
-      <CircularProgress />
-    </Box> :
       <Grid container spacing={2}>
         {furnitureList.map((item) => (
           <Grid
@@ -111,7 +99,7 @@ export default function HomePage() {
             </Box>
           </Grid>
         ))}
-      </Grid>}
+      </Grid>
     </Box>
 
   )

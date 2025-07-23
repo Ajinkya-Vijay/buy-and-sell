@@ -3,29 +3,35 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Box, Grid } from '@mui/material';
 import { useCartStore } from '../store/cartStore'
 import axios from 'axios';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function ProductDetailsPage() {
   const addProduct = useCartStore((state)=>state.addCart)
   const [product, setProduct] = useState();
-  
+  const [loading, setLoading] = useState(false);
+
   const params = useParams();
   const navigate = useNavigate();
 
   async function getProductDetails(){
-    let furnitureData;
-    let kitchenData;
+    setLoading(true)
     await axios.get(`https://dummyjson.com/products/${params.id}`)
     .then((res)=>{
       setProduct(res.data)
-    }).catch((err)=>console.error(err));
+    }).catch((err)=>console.error(err))
+    .finally(()=> setLoading(false))
   }
 
   useEffect(()=>{
     getProductDetails();
   },[]);
+  
 
-  return<>
-<Box sx={{ width: '100%', mt: 4 }}>
+  return <>
+<Box sx={{ minHeight : '40em',width: '100%', mt: 4 }}>
+    { loading ? <Box sx={{ display: 'flex', justifyContent:'center'}}>
+        <CircularProgress />
+      </Box> : <>
   {product && (
     <Grid
       container
@@ -124,6 +130,7 @@ export default function ProductDetailsPage() {
       </Grid>
     </Grid>
   )}
+      </>}
 </Box>
 
   </> 
