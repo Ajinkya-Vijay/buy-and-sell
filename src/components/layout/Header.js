@@ -217,7 +217,7 @@ export default function PrimarySearchAppBar() {
               aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
-              // onClick={handleProfileMenuOpen}
+              onClick={()=>navigate('/cart')}
               color="inherit"
             >
               <ShoppingCartIcon />
