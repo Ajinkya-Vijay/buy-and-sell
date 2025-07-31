@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useAuth0 } from "@auth0/auth0-react";
 import productsImage from '../assests/images/hand-drawn-pantry.avif'
 import { TextField } from '@mui/material';
+import Button from '@mui/material/Button';
 
 export default function LoginPage()  {
   const [input, setInput] = useState('');
+  const { loginWithRedirect } = useAuth0();
 
   const handleChange = (e) => setInput(e.target.value);
 
@@ -27,20 +30,12 @@ export default function LoginPage()  {
 
         <div style={styles.loginRight}>
           <form onSubmit={handleSubmit}>
-            <TextField id="standard-basic" label="Enter Email/Mobile Number" variant="standard"
-              onChange={handleChange}
-              required
-              value={input} 
-             />
+            <Button variant="outlined" onClick={() => loginWithRedirect()}>
+              Click here to Log In
+            </Button>
             <p style={styles.terms}>
               By continuing, you agree to Flipkart's{' '}
               <a href="/">Terms of Use</a> and <a href="/">Privacy Policy</a>.
-            </p>
-            <button type="submit" style={styles.otpBtn}>
-              Request OTP
-            </button>
-            <p style={styles.createAccount}>
-              New to Flipkart? <a href="/">Create an account</a>
             </p>
           </form>
         </div>

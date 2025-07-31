@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useAuth0, User } from "@auth0/auth0-react";
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -59,6 +60,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar() {
+    const { user, isAuthenticated, logout } = useAuth0();
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -78,6 +81,7 @@ export default function PrimarySearchAppBar() {
   const handleMenuClose = () => {
     setAnchorEl(null);
     handleMobileMenuClose();
+    logout();
   };
 
   const handleProfileNavigation = () =>{
@@ -108,7 +112,7 @@ export default function PrimarySearchAppBar() {
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleProfileNavigation}>My account</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Log out</MenuItem>
+      {isAuthenticated && <MenuItem onClick={handleMenuClose}>Log out</MenuItem>}
     </Menu>
   );
 
@@ -182,7 +186,7 @@ export default function PrimarySearchAppBar() {
             noWrap
             component="div"
             sx={{ display: { xs: 'none', sm: 'block', fontFamily: 'emoji', fontStyle: 'italic' } }}
-            onClick={()=>navigate('/buy-and-sell')}
+            onClick={()=>navigate('/')}
           >
             Buy'n'Sell
           </Typography>
@@ -197,6 +201,7 @@ export default function PrimarySearchAppBar() {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+            {isAuthenticated && <h4>Hello, {user?.name}</h4>}
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="error">
                 <MailIcon />

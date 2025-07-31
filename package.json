@@ -1,9 +1,10 @@
 {
-  "homepage": "https://Ajinkya-Vijay.github.io/buy-and-sell",
+  "homepage": "https://Ajinkya-Vijay.github.io/",
   "name": "buy-and-sell",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@auth0/auth0-react": "^2.4.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@fontsource/roboto": "^5.2.6",

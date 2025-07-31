@@ -65,7 +65,7 @@ export default function ProductDetailsPage() {
           <p>{product?.description}</p>
 
           <h2 style={{ marginTop: '1rem', color: '#B12704' }}>
-            ₹{Math.ceil(product.price)*10}{' '}
+            ₹{Math.ceil(product.price)*10}
             <span style={{ textDecoration: 'line-through', color: '#888', fontSize: '1rem' }}>
               ₹{product.originalPrice || product.price + 1000}
             </span>{' '}
@@ -76,10 +76,10 @@ export default function ProductDetailsPage() {
           <p><strong>Stock Left:</strong> {product?.stock}</p>
 
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mt: 2 }}>
-            <button onClick={()=>{addProduct(product); navigate('/checkout')}} style={{ padding: '10px 20px', backgroundColor: '#FFA41C', border: 'none', color: 'white' }}>
+            <button onClick={()=>{addProduct(product); navigate('/checkout');}} style={{ padding: '10px 20px', backgroundColor: '#FFA41C', border: 'none', color: 'white' }}>
               Add to Cart
             </button>
-            <button style={{ padding: '10px 20px', backgroundColor: '#FB641B', border: 'none', color: 'white' }}>
+            <button onClick={()=>{navigate('/checkout')}} style={{ padding: '10px 20px', backgroundColor: '#FB641B', border: 'none', color: 'white' }}>
               Buy Now
             </button>
           </Box>

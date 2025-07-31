@@ -19,7 +19,7 @@ const AppRoutes = () => {
   return (
       <Routes>
         {/* Public Routes */}
-        <Route path="/buy-and-sell" element={<HomePage />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<ProductListingPage />} />
         <Route path="/products/:id" element={<ProductDetailsPage />} /> {/* Dynamic segment for product ID */}
         <Route path="/cart" element={<CartPage />} />

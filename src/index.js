@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './theme';
+import { Auth0Provider } from '@auth0/auth0-react';
 import App from './App';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
@@ -12,6 +13,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
+    <Auth0Provider
+    domain="dev-lwjlmsxlxf10b5wj.us.auth0.com"
+    clientId="JtJI3NsE3Jfr9jmQQbtrBczznCSkSsqB"
+    authorizationParams={{
+      redirect_uri: window.location.origin
+    }}
+  >
   <BrowserRouter>
   <ThemeProvider theme={theme}>
     <QueryClientProvider client={queryClient}>
@@ -19,6 +27,7 @@ root.render(
     </QueryClientProvider>
   </ThemeProvider>
   </BrowserRouter>
+  </Auth0Provider>
   </React.StrictMode>
 );
 
