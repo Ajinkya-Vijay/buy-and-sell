@@ -18,6 +18,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useNavigate } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -186,7 +187,7 @@ export default function PrimarySearchAppBar() {
             noWrap
             component="div"
             sx={{ display: { xs: 'none', sm: 'block', fontFamily: 'emoji', fontStyle: 'italic' } }}
-            onClick={()=>navigate('/')}
+            onClick={()=>navigate('/buy-and-sell')}
           >
             Buy'n'Sell
           </Typography>
@@ -201,7 +202,8 @@ export default function PrimarySearchAppBar() {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            {isAuthenticated && <h4>Hello, {user?.name}</h4>}
+            {isAuthenticated ? <h4>Hello, {user?.name}</h4> : 
+              <Button variant="outlined white" sx={{fontSize:'12px', color :'white'}} onClick={()=> navigate('/login')}>Login/Sign Up</Button>}
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="error">
                 <MailIcon />
