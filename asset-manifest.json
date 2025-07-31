@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/buy-and-sell/static/css/main.1e487920.css",
-    "main.js": "/buy-and-sell/static/js/main.c079b6db.js",
-    "static/media/hand-drawn-pantry.avif": "/buy-and-sell/static/media/hand-drawn-pantry.4ef3c58c045da122c671.avif",
-    "index.html": "/buy-and-sell/index.html",
-    "main.1e487920.css.map": "/buy-and-sell/static/css/main.1e487920.css.map",
-    "main.c079b6db.js.map": "/buy-and-sell/static/js/main.c079b6db.js.map"
+    "main.css": "/static/css/main.1e487920.css",
+    "main.js": "/static/js/main.0f169a4a.js",
+    "static/media/hand-drawn-pantry.avif": "/static/media/hand-drawn-pantry.4ef3c58c045da122c671.avif",
+    "index.html": "/index.html",
+    "main.1e487920.css.map": "/static/css/main.1e487920.css.map",
+    "main.0f169a4a.js.map": "/static/js/main.0f169a4a.js.map"
   },
   "entrypoints": [
     "static/css/main.1e487920.css",
-    "static/js/main.c079b6db.js"
+    "static/js/main.0f169a4a.js"
   ]
 }
