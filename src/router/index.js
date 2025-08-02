@@ -1,7 +1,5 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
-// Import your page components
 import HomePage from '../pages/HomePage';
 import ProductListingPage from '../pages/ProductListingPage';
 import ProductDetailsPage from '../pages/ProductDetailsPage';
@@ -11,15 +9,14 @@ import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 import UserDashboard from '../pages/UserDashboard';
 import NotFoundPage from '../pages/NotFoundPage';
-
-// You might also have a layout component, e.g., for Header/Footer
-// import MainLayout from '../components/layout/MainLayout';
+import RedirectPageToHomePage from '../pages/RedirectPageToHomePage';
 
 const AppRoutes = () => {
   return (
       <Routes>
         {/* Public Routes */}
         <Route path="/buy-and-sell" element={<HomePage />} />
+        <Route path="/" element={<RedirectPageToHomePage/>} />
         <Route path="/products" element={<ProductListingPage />} />
         <Route path="/products/:id" element={<ProductDetailsPage />} /> {/* Dynamic segment for product ID */}
         <Route path="/cart" element={<CartPage />} />
